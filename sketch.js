@@ -14,7 +14,7 @@ let titleImage;
 let bulletImage;
 let heartImage;
 let drawMe = false; //is used to controll which sprites are being drawn per frame
-let drawMeScore = false; //used to not draw leaderbaord
+let drawMeScore = false; //used to not draw dfgggg
 
 //fonts
 var myFont, fontReady = false;
