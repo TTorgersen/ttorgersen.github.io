@@ -49,31 +49,31 @@ function fontRead(){
 }
 function preload(){
   //images
-  titleImage = loadImage('/Galaga/images/galaga30.png');
-  shipImage = loadImage('/Galaga/images/galagaShipGrey.png');
-  enemy1Image = loadImage('/Galaga/images/galagaEnemy1.png');
-  enemy2Image = loadImage('/Galaga/images/galagaEnemy2.png');
-  bulletImage = loadImage('/Galaga/images/bullet.png');
-  heartImage = loadImage('/Galaga/images/8bitheart.png');
-  fireballImage = loadImage('/Galaga/images/fireball.png');
+  titleImage = loadImage('../images/galaga30.png');
+  shipImage = loadImage('../images/galagaShipGrey.png');
+  enemy1Image = loadImage('../images/galagaEnemy1.png');
+  enemy2Image = loadImage('../images/galagaEnemy2.png');
+  bulletImage = loadImage('../images/bullet.png');
+  heartImage = loadImage('../images/8bitheart.png');
+  fireballImage = loadImage('../images/fireball.png');
 
 
   //font
-  myFont = loadFont('/Galaga/data/Emulogic-zrEw.ttf', fontRead);
+  myFont = loadFont('../data/Emulogic-zrEw.ttf', fontRead);
 
   //background image
-  bg = loadImage('/Galaga/images/nightsky.png');
+  bg = loadImage('../images/nightsky.png');
 
   //sound
   soundFormats('mp3');
-  hit = loadSound('/Galaga/assets/expo.mp3');
-  life = loadSound('/Galaga/assets/liv.mp3');
-  shot = loadSound('/Galaga/assets/skyt.mp3');
-  firesound = loadSound('/Galaga/assets/fire.mp3');
-  laugh = loadSound('/Galaga/assets/laugh.mp3');
+  hit = loadSound('../assets/expo.mp3');
+  life = loadSound('../assets/liv.mp3');
+  shot = loadSound('../assets/skyt.mp3');
+  firesound = loadSound('../assets/fire.mp3');
+  laugh = loadSound('../assets/laugh.mp3');
 
   //videoload
-  intro = createVideo('/Galaga/images/galagaintro.mp4');
+  intro = createVideo('../images/galagaintro.mp4');
   intro.hide();
   
   //json
@@ -81,7 +81,7 @@ function preload(){
 
   //boss
  // bossImage = loadImage('/Galaga/images/boss.png')
-   bossAni = loadAnimation("/Galaga/images/BOSS00.png", "/Galaga/images/BOSS_1.png");
+   bossAni = loadAnimation("../images/BOSS00.png", "../images/BOSS_1.png");
   
 
 
