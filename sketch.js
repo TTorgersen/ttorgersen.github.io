@@ -410,10 +410,10 @@ function drawEnemies(){
     
     for(var i = 0; i<8+(level); i++){
       if(i >= 9){
-        enemy1 = createSprite(i/9*70, -10*i);
+        enemy1 = createSprite((i/9)*70, -10*i);
         enemy1.scale = 0.03;
         enemy1.addImage(enemy1Image);
-        enemy1.attractionPoint(0.7,i*70, windowHeight);
+        enemy1.attractionPoint(1,(i/9)*70, windowHeight);
 
       }else {
         enemy1 = createSprite(420+i*70, windowHeight/10);
@@ -618,9 +618,9 @@ background(bg);
 ship.remove();
 
 textSize(15);
-text("TURN LEFT    -   LEFT ARROW", windowWidth/2-100, windowHeight/2);
-text("TURN RIGHT   -   RIGHT ARROW", windowWidth/2-100, windowHeight/2+50);
-text("SHOOT        -   SPACEBAR", windowWidth/2-100, windowHeight/2+100);
-text("PRESS 'ESC' TO RETURN TO MAIN MENU", windowWidth/2-120, windowHeight-20);
+text("TURN LEFT    -   LEFT ARROW", windowWidth/2-150, windowHeight/2);
+text("TURN RIGHT   -   RIGHT ARROW", windowWidth/2-150, windowHeight/2+50);
+text("SHOOT        -   SPACEBAR", windowWidth/2-150, windowHeight/2+100);
+text("PRESS 'ESC' TO RETURN TO MAIN MENU", windowWidth/2-200, windowHeight-20);
 
 }
