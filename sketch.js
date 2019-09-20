@@ -148,6 +148,7 @@ function draw() {
 
 function preStart(){
   background(bg);
+  fill(255);
   text("PRESS SPACE TO START", windowWidth/2, windowHeight/2)
   keyTyped();
 }
