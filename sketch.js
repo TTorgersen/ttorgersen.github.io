@@ -195,7 +195,7 @@ function drawMainMenu(){
     title.addImage(titleImage);
 
     var x = windowWidth/2-50;
-    var y  = windowHeight/3;
+    var y  = windowHeight/2;
     ship = createSprite(x,y);
     ship.scale = 0.1;
     ship.addImage(shipImage);
@@ -226,7 +226,7 @@ function keyPressed(){
         drawMeScore = false;
         drawMe = true;
         currentScreen = PLAY;
-        Mainship = createSprite(windowWidth/2,windowHeight-20);
+        Mainship = createSprite(windowWidth/2,windowHeight-40);
         Mainship.scale = 0.1;
         Mainship.addImage(shipImage);
         score = 0;
@@ -298,7 +298,7 @@ function mainText(){
   text("PRESS ENTER TO SELECT", windowWidth/2-200, windowHeight-40);
 
   if(menuShip == 0){
-    y = 397;
+    y = windowWidth/2;
     fill(255,255,0);
     text("PLAY", windowWidth/2, windowHeight/2);
     fill(200);
@@ -309,7 +309,7 @@ function mainText(){
     ship.position.y = y;
 
   } else if(menuShip == 1){
-    y = 497;
+    y = windowWidth/2+100;
     fill(255,255,0);
     text("HIGH SCORE", windowWidth/2, windowHeight/2+100);
     fill(200);
@@ -319,7 +319,7 @@ function mainText(){
     ship.position.y = y;
 
   }else if(menuShip == 2){
-    y = 597;
+    y = windowWidth/2+200;
     fill(255,255,0);
     text("HELP", windowWidth/2, windowHeight/2+200);
     fill(200);
@@ -350,21 +350,21 @@ function drawPlay(){
   fill(0);
   rect(rightWall,5, 340, windowHeight);
 
-  textSize(23);
+  textSize(15);
   textFont(myFont); 
   fill(255);
-  text("HIGH SCORE", rightWall+10, 100);
-  text("22010", rightWall+10, 130);
+  text("HIGH SCORE", rightWall+10, 40);
+  text("22010", rightWall+10, 55);
 
-  text("CURRENT SCORE", rightWall+10, 240);
-  text(score, rightWall+10, 280);
+  text("CURRENT SCORE", rightWall+10, 100);
+  text(score, rightWall+10, 120);
 
-  text("LEVEL", rightWall+10, 400);
-  text(level, rightWall+140, 400);
+  text("LEVEL", rightWall+10, 300);
+  text(level, rightWall+140, 320);
 
 
 
-  text("LIVES", rightWall+10, 600);
+  text("LIVES", rightWall+10, 400);
   
 
 
@@ -549,17 +549,17 @@ function checkEnemies(){
 
 function lives(){
   if(numLife == 3){
-    image(heartImage, 1060, 610, 40, 40);
-    image(heartImage, 1110, 610, 40, 40);
-    image(heartImage, 1160, 610, 40, 40);
+    image(heartImage, 1060, 410, 40, 40);
+    image(heartImage, 1110, 410, 40, 40);
+    image(heartImage, 1160, 410, 40, 40);
 
   } else if(numLife == 2){
-    image(heartImage, 1060, 610, 40, 40);
-    image(heartImage, 1110, 610, 40, 40);
+    image(heartImage, 1060, 410, 40, 40);
+    image(heartImage, 1110, 410, 40, 40);
 
 
   } else if(numLife == 1){
-    image(heartImage, 1060, 610, 40, 40);
+    image(heartImage, 1060, 410, 40, 40);
 
   }else if(numLife <= 0){
     currentScreen = HIGH_SCORE;
@@ -583,19 +583,19 @@ function drawHighscore(){
     background(bg);
     textSize(20);
     text("LEADERBOARD", windowWidth/2-200,100);
-    textSize(10);
+    textSize(15);
     fill("yellow");
     text("PLAYER 1 ", windowWidth/2-200, 170)
     text("SCORE: " + score, windowWidth/2-200, 210);
     fill("red");
-    text("TOP 3", windowWidth/2-200, 320);
+    text("TOP 3", windowWidth/2-200, 250);
     fill("white");
-    text("PRESS 'ESC' TO RETURN TO MAIN MENU", windowWidth/2-400, windowHeight-5);
+    text("PRESS 'ESC' TO RETURN TO MAIN MENU", windowWidth/2, windowHeight-20);
 
     for(var i = 0; i<tabell.leaderboard.length; i++){
       fill(64,224,208)
-      text(tabell.leaderboard[i].name, windowWidth/2-200, i*100+400);
-      text(tabell.leaderboard[i].score, windowWidth/2, i*100+400);
+      text(tabell.leaderboard[i].name, windowWidth/2-200, i*100+200);
+      text(tabell.leaderboard[i].score, windowWidth/2, i*100+200);
     }
 
   }
