@@ -190,7 +190,7 @@ function drawMainMenu(){
   if(drawMe){
     background(bg);
     title.remove();
-    title = createSprite(windowWidth/2,windowHeight/4);
+    title = createSprite(windowWidth/2,windowHeight/5);
     title.scale = 0.3;
     title.addImage(titleImage);
 
@@ -298,7 +298,7 @@ function mainText(){
   text("PRESS ENTER TO SELECT", windowWidth/2-200, windowHeight-40);
 
   if(menuShip == 0){
-    y = windowWidth/2;
+    y = windowHeight/2;
     fill(255,255,0);
     text("PLAY", windowWidth/2, windowHeight/2);
     fill(200);
@@ -309,7 +309,7 @@ function mainText(){
     ship.position.y = y;
 
   } else if(menuShip == 1){
-    y = windowWidth/2+100;
+    y = windowHeight/2+100;
     fill(255,255,0);
     text("HIGH SCORE", windowWidth/2, windowHeight/2+100);
     fill(200);
@@ -319,7 +319,7 @@ function mainText(){
     ship.position.y = y;
 
   }else if(menuShip == 2){
-    y = windowWidth/2+200;
+    y = windowHeight/2+200;
     fill(255,255,0);
     text("HELP", windowWidth/2, windowHeight/2+200);
     fill(200);
@@ -360,7 +360,7 @@ function drawPlay(){
   text(score, rightWall+10, 120);
 
   text("LEVEL", rightWall+10, 300);
-  text(level, rightWall+140, 320);
+  text(level, rightWall+140, 300);
 
 
 
@@ -490,7 +490,7 @@ function checkHit(){
 function checkBoss(){
   fill("red");
   textSize(32);
-  text("BOSS HEALTH:" + bossHP , windowWidth/2-400, 50);
+  text("BOSS HEALTH:" + bossHP , windowWidth/2-200, 50);
   boss.attractionPoint(1,Mainship.position.x, boss.position.y);
   boss.position.y += 1;
   boss.friction = 0.1;
@@ -581,7 +581,7 @@ function drawHighscore(){
   if(drawMeScore){
    numLife = 3;
     background(bg);
-    textSize(20);
+    textSize(25);
     text("LEADERBOARD", windowWidth/2-200,100);
     textSize(15);
     fill("yellow");
@@ -590,12 +590,12 @@ function drawHighscore(){
     fill("red");
     text("TOP 3", windowWidth/2-200, 250);
     fill("white");
-    text("PRESS 'ESC' TO RETURN TO MAIN MENU", windowWidth/2, windowHeight-20);
+    text("PRESS 'ESC' TO RETURN TO MAIN MENU", windowWidth/3, windowHeight-20);
 
     for(var i = 0; i<tabell.leaderboard.length; i++){
       fill(64,224,208)
-      text(tabell.leaderboard[i].name, windowWidth/2-200, i*100+200);
-      text(tabell.leaderboard[i].score, windowWidth/2, i*100+200);
+      text(tabell.leaderboard[i].name, windowWidth/2-200, i*40+300);
+      text(tabell.leaderboard[i].score, windowWidth/2, i*40+300);
     }
 
   }
@@ -610,9 +610,9 @@ background(bg);
 ship.remove();
 
 textSize(10);
-text("TURN LEFT    -   LEFT ARROW", windowWidth/2-200, windowHeight/2);
-text("TURN RIGHT   -   RIGHT ARROW", windowWidth/2-200, windowHeight/2+50);
-text("SHOOT        -   SPACEBAR", windowWidth/2-200, windowHeight/2+100);
-text("PRESS 'ESC' TO RETURN TO MAIN MENU", windowWidth/2-400, windowHeight-100);
+text("TURN LEFT    -   LEFT ARROW", windowWidth/2-50, windowHeight/2);
+text("TURN RIGHT   -   RIGHT ARROW", windowWidth/2-50, windowHeight/2+50);
+text("SHOOT        -   SPACEBAR", windowWidth/2-50, windowHeight/2+100);
+text("PRESS 'ESC' TO RETURN TO MAIN MENU", windowWidth/2-100, windowHeight-100);
 
 }
