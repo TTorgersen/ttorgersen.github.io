@@ -410,7 +410,7 @@ function drawEnemies(){
     
     for(var i = 0; i<8+(level); i++){
       if(i >= 9){
-        enemy1 = createSprite((i/2)*70, 10*i);
+        enemy1 = createSprite((420+i*70)-10*i, i*10);
         enemy1.scale = 0.03;
         enemy1.addImage(enemy1Image);
         enemy1.attractionPoint(1,(i/2)*70, windowHeight);
