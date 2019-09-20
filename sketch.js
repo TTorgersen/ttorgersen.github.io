@@ -133,7 +133,7 @@ function draw() {
   else if(currentScreen == HIGH_SCORE){
     drawHighscore();
   }
-  if(frameCount == 170){
+  if(frameCount == 1700){
     drawMe = true;
     currentScreen = MAIN_MENU; 
   }
@@ -144,7 +144,7 @@ function draw() {
 
 function playVideo(){
 
-  if(frameCount < 160){
+  if(frameCount < 1600){
     image(intro, 0,0, windowWidth, windowHeight);
     intro.play();
     intro.volume(0.3);
