@@ -190,11 +190,11 @@ function drawMainMenu(){
   if(drawMe){
     background(bg);
     title.remove();
-    title = createSprite(windowWidth/2,windowHeight/2);
-    title.scale = 0.4;
+    title = createSprite(windowWidth/2,windowHeight/3);
+    title.scale = 0.35;
     title.addImage(titleImage);
 
-    var x = windowWidth/2;
+    var x = windowWidth/2-50;
     var y  = windowHeight/2;
     ship = createSprite(x,y);
     ship.scale = 0.1;
@@ -295,7 +295,7 @@ function mainText(){
   fill(0);
   rect(windowWidth/2-90, windowHeight/2-50,70,300);
   fill(255);
-  text("PRESS ENTER TO SELECT", windowWidth/2-200, windowHeight-100);
+  text("PRESS ENTER TO SELECT", windowWidth/2-200, windowHeight-40);
 
   if(menuShip == 0){
     y = 397;
