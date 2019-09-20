@@ -16,6 +16,7 @@ let bulletImage;
 let heartImage;
 let drawMe = false; //is used to controll which sprites are being drawn per frame
 let drawMeScore = false; //used to not draw dfgggg
+let counter; 
 
 //fonts
 var myFont, fontReady = false;
@@ -109,6 +110,7 @@ function setup() {
 
   
   currentScreen = preScreen;
+  counter = frameCount;
   
   bossAni.frameDelay = 30;
 
@@ -121,6 +123,7 @@ function draw() {
     preStart();
   }
   else if(currentScreen == VIDEO){
+    counter = frameCount;
     playVideo();
 
   }
@@ -137,7 +140,7 @@ function draw() {
   else if(currentScreen == HIGH_SCORE){
     drawHighscore();
   }
-  if(frameCount == 1700){
+  if(frameCount == 2000){
     drawMe = true;
     currentScreen = MAIN_MENU; 
   }
@@ -156,15 +159,14 @@ function preStart(){
 }
 
 function playVideo(){
-
-  if(frameCount < 1600){
+  if(counter < 1800){
     image(intro, 0,0, windowWidth, windowHeight);
     intro.play();
     intro.volume(0.3);
   }
   else {
     currentScreen = LOADING;
-    drawLoadingScreen;
+    drawLoadingScreen();
     drawMe = true;
     intro.volume(0);
     intro.stop();
@@ -515,7 +517,7 @@ function checkHit(){
 function checkBoss(){
   fill("red");
   textSize(32);
-  text("BOSS HEALTH:" + bossHP , windowWidth/2-200, 50);
+  text("BOSS HEALTH:" + bossHP , windowWidth/2-300, 50);
   boss.attractionPoint(0.7,Mainship.position.x, boss.position.y);
   boss.position.y += 1;
   boss.friction = 0.1;
