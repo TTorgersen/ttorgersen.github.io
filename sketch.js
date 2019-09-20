@@ -195,7 +195,7 @@ function drawMainMenu(){
     title.addImage(titleImage);
 
     var x = windowWidth/2-50;
-    var y  = windowHeight/2;
+    var y  = windowHeight/3;
     ship = createSprite(x,y);
     ship.scale = 0.1;
     ship.addImage(shipImage);
@@ -226,7 +226,7 @@ function keyPressed(){
         drawMeScore = false;
         drawMe = true;
         currentScreen = PLAY;
-        Mainship = createSprite(windowWidth/2,windowHeight/3);
+        Mainship = createSprite(windowWidth/2,windowHeight-20);
         Mainship.scale = 0.1;
         Mainship.addImage(shipImage);
         score = 0;
@@ -581,16 +581,16 @@ function drawHighscore(){
   if(drawMeScore){
    numLife = 3;
     background(bg);
-    textSize(42);
+    textSize(20);
     text("LEADERBOARD", windowWidth/2-200,100);
-    textSize(23);
+    textSize(10);
     fill("yellow");
     text("PLAYER 1 ", windowWidth/2-200, 170)
     text("SCORE: " + score, windowWidth/2-200, 210);
     fill("red");
     text("TOP 3", windowWidth/2-200, 320);
     fill("white");
-    text("PRESS 'ESC' TO RETURN TO MAIN MENU", windowWidth/2-400, windowHeight-100);
+    text("PRESS 'ESC' TO RETURN TO MAIN MENU", windowWidth/2-400, windowHeight-5);
 
     for(var i = 0; i<tabell.leaderboard.length; i++){
       fill(64,224,208)
@@ -609,7 +609,7 @@ background(bg);
 
 ship.remove();
 
-textSize(23);
+textSize(10);
 text("TURN LEFT    -   LEFT ARROW", windowWidth/2-200, windowHeight/2);
 text("TURN RIGHT   -   RIGHT ARROW", windowWidth/2-200, windowHeight/2+50);
 text("SHOOT        -   SPACEBAR", windowWidth/2-200, windowHeight/2+100);
