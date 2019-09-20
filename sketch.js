@@ -399,7 +399,7 @@ function drawEnemies(){
     boss.scale = 0.11;
     boss.addAnimation('fly', bossAni);
     boss.changeAnimation('fly');
-    bossHP = 100;
+    bossHP = 50*level;
     laugh.play();
     
     
@@ -609,10 +609,10 @@ background(bg);
 
 ship.remove();
 
-textSize(10);
-text("TURN LEFT    -   LEFT ARROW", windowWidth/2, windowHeight/2);
-text("TURN RIGHT   -   RIGHT ARROW", windowWidth/2, windowHeight/2+50);
-text("SHOOT        -   SPACEBAR", windowWidth/2, windowHeight/2+100);
-text("PRESS 'ESC' TO RETURN TO MAIN MENU", windowWidth/3, windowHeight-20);
+textSize(15);
+text("TURN LEFT    -   LEFT ARROW", windowWidth/2-100, windowHeight/2);
+text("TURN RIGHT   -   RIGHT ARROW", windowWidth/2-100, windowHeight/2+50);
+text("SHOOT        -   SPACEBAR", windowWidth/2-100, windowHeight/2+100);
+text("PRESS 'ESC' TO RETURN TO MAIN MENU", windowWidth/2-120, windowHeight-20);
 
 }
