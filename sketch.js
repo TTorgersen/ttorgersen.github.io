@@ -413,7 +413,7 @@ function drawEnemies(){
         enemy1 = createSprite(i*70-200, windowHeight/10-100);
         enemy1.scale = 0.03;
         enemy1.addImage(enemy1Image);
-        enemy1.attractionPoint(1,i*70, windowHeight);
+        enemy1.attractionPoint(0.7,i*70-200, windowHeight);
 
       }else {
         enemy1 = createSprite(420+i*70, windowHeight/10);
