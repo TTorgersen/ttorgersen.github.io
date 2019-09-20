@@ -147,7 +147,7 @@ function playVideo(){
   if(frameCount < 160){
     image(intro, 0,0, windowWidth, windowHeight);
     intro.play();
-    intro.volume(0);
+    intro.volume(0.3);
   }
   else {
     currentScreen = LOADING;
@@ -163,7 +163,7 @@ function drawLoadingScreen(){
 
   if(drawMe){
     background(bg);
-    title = createSprite(windowWidth/2,windowHeight/2-100);
+    title = createSprite(windowWidth/2,windowHeight/2);
     title.scale = 0.5;
     title.addImage(titleImage);
     
@@ -190,12 +190,12 @@ function drawMainMenu(){
   if(drawMe){
     background(bg);
     title.remove();
-    title = createSprite(windowWidth/2,windowHeight/2-250);
+    title = createSprite(windowWidth/2,windowHeight/2);
     title.scale = 0.4;
     title.addImage(titleImage);
 
-    var x = windowWidth/2-50;
-    var y  = windowHeight/2-15;
+    var x = windowWidth/2;
+    var y  = windowHeight/2;
     ship = createSprite(x,y);
     ship.scale = 0.1;
     ship.addImage(shipImage);
@@ -226,7 +226,7 @@ function keyPressed(){
         drawMeScore = false;
         drawMe = true;
         currentScreen = PLAY;
-        Mainship = createSprite(windowWidth/2,windowHeight-50);
+        Mainship = createSprite(windowWidth/2,windowHeight/2);
         Mainship.scale = 0.1;
         Mainship.addImage(shipImage);
         score = 0;
@@ -280,7 +280,7 @@ function keyTyped(){
       bullet.scale = 0.05;
       bullet.addImage(bulletImage);
       bullet.attractionPoint(10,Mainship.position.x, 0);
-     // shot.play();
+      shot.play();
   
       bulletGroup.add(bullet);
 
@@ -459,7 +459,7 @@ function checkHit(){
         }
         
         enemyGroup[i].remove();
-        //hit.play();
+        hit.play();
         checkEnemies();
         score += 10;
       }else if(bulletGroup[0].position.y <= 50){
@@ -478,7 +478,7 @@ function checkHit(){
    if(fireGroup[x].overlap(Mainship)){
      fireGroup[x].remove();
      numLife -= 1;
-     //life.play();
+     life.play();
      
    }  
   }
@@ -498,7 +498,7 @@ function checkBoss(){
     if(boss.overlap(bulletGroup[0])){
       bossHP -= 10;
       bulletGroup[0].remove();
-      //hit.play();
+      hit.play();
       score += 10;
     }else if(bulletGroup[0].position.y <= 50){
       bulletGroup[0].remove();
@@ -531,16 +531,18 @@ function checkEnemies(){
     if(enemyGroup[i].overlap(Mainship)){
       enemyGroup[i].remove();
       numLife -= 1;
+      life.play();
+
 
 
     } else if(enemyGroup[i].position.y > windowHeight-50){
       enemyGroup[i].remove();
       numLife -= 1;
+      life.play();
 
       if(enemyGroup.length <= 0){
         drawEnemies();
       }
-      //life.play();
     }
   }
 }
