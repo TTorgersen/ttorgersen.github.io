@@ -4,9 +4,10 @@ const PLAY = 2;
 const HIGH_SCORE = 3;
 const HELP = 4;
 const VIDEO = 5;
+const preScreen = 6;
 
 
-let currentScreen;
+let currentScreen = 6;
 let shipImage;
 let enemy1Image;
 let enemy2Image;
@@ -116,7 +117,12 @@ function setup() {
 
 
 function draw() {
-  if(currentScreen == VIDEO){
+  if(currentScreen == preScreen){
+    background(bg);
+    text("PRESS SPACE TO START", windowWidth/2, windowHeight/2)
+    keyTyped();
+  }
+  else if(currentScreen == VIDEO){
     playVideo();
 
   }
@@ -284,6 +290,12 @@ function keyTyped(){
   
       bulletGroup.add(bullet);
 
+    }
+  }
+
+  if(currentScreen == preScreen){
+    if(key === ' '){
+      currentScreen = VIDEO;
     }
   }
   
