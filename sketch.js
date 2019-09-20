@@ -108,7 +108,7 @@ function setup() {
   fireGroup = new Group();
 
   
-  currentScreen = VIDEO;
+  currentScreen = preScreen;
   
   bossAni.frameDelay = 30;
 
@@ -118,9 +118,7 @@ function setup() {
 
 function draw() {
   if(currentScreen == preScreen){
-    background(bg);
-    text("PRESS SPACE TO START", windowWidth/2, windowHeight/2)
-    keyTyped();
+    preStart();
   }
   else if(currentScreen == VIDEO){
     playVideo();
@@ -146,6 +144,12 @@ function draw() {
 
   drawSprites();
   
+}
+
+function preStart(){
+  background(bg);
+  text("PRESS SPACE TO START", windowWidth/2, windowHeight/2)
+  keyTyped();
 }
 
 function playVideo(){
