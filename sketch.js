@@ -190,8 +190,8 @@ function drawMainMenu(){
   if(drawMe){
     background(bg);
     title.remove();
-    title = createSprite(windowWidth/2,windowHeight/3);
-    title.scale = 0.35;
+    title = createSprite(windowWidth/2,windowHeight/4);
+    title.scale = 0.3;
     title.addImage(titleImage);
 
     var x = windowWidth/2-50;
@@ -226,7 +226,7 @@ function keyPressed(){
         drawMeScore = false;
         drawMe = true;
         currentScreen = PLAY;
-        Mainship = createSprite(windowWidth/2,windowHeight/2);
+        Mainship = createSprite(windowWidth/2,windowHeight/3);
         Mainship.scale = 0.1;
         Mainship.addImage(shipImage);
         score = 0;
