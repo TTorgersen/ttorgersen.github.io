@@ -195,7 +195,7 @@ function drawMainMenu(){
     title.addImage(titleImage);
 
     var x = windowWidth/2-50;
-    var y  = windowHeight/2;
+    var y  = windowHeight/2-20;
     ship = createSprite(x,y);
     ship.scale = 0.1;
     ship.addImage(shipImage);
@@ -298,7 +298,7 @@ function mainText(){
   text("PRESS ENTER TO SELECT", windowWidth/2-200, windowHeight-40);
 
   if(menuShip == 0){
-    y = windowHeight/2;
+    y = windowHeight/2-20;
     fill(255,255,0);
     text("PLAY", windowWidth/2, windowHeight/2);
     fill(200);
@@ -309,7 +309,7 @@ function mainText(){
     ship.position.y = y;
 
   } else if(menuShip == 1){
-    y = windowHeight/2+100;
+    y = windowHeight/2+80;
     fill(255,255,0);
     text("HIGH SCORE", windowWidth/2, windowHeight/2+100);
     fill(200);
@@ -319,7 +319,7 @@ function mainText(){
     ship.position.y = y;
 
   }else if(menuShip == 2){
-    y = windowHeight/2+200;
+    y = windowHeight/2+180;
     fill(255,255,0);
     text("HELP", windowWidth/2, windowHeight/2+200);
     fill(200);
@@ -396,7 +396,7 @@ function drawEnemies(){
 
   if(level > 0 && level % 2 == 0){
     boss = createSprite(windowWidth/2-150, windowHeight/2-200);
-    boss.scale = 0.13;
+    boss.scale = 0.11;
     boss.addAnimation('fly', bossAni);
     boss.changeAnimation('fly');
     bossHP = 100;
@@ -411,13 +411,13 @@ function drawEnemies(){
     for(var i = 0; i<8+(level); i++){
       if(i >= 9){
         enemy1 = createSprite(i*70, windowHeight/10-100);
-        enemy1.scale = 0.035;
+        enemy1.scale = 0.03;
         enemy1.addImage(enemy1Image);
         enemy1.attractionPoint(0.7,i*70, windowHeight);
 
       }else {
         enemy1 = createSprite(420+i*70, windowHeight/10);
-        enemy1.scale = 0.035;
+        enemy1.scale = 0.03;
         enemy1.addImage(enemy1Image);
         enemy1.attractionPoint(0.7,450+i*70, windowHeight);
 
@@ -610,9 +610,9 @@ background(bg);
 ship.remove();
 
 textSize(10);
-text("TURN LEFT    -   LEFT ARROW", windowWidth/2-50, windowHeight/2);
-text("TURN RIGHT   -   RIGHT ARROW", windowWidth/2-50, windowHeight/2+50);
-text("SHOOT        -   SPACEBAR", windowWidth/2-50, windowHeight/2+100);
-text("PRESS 'ESC' TO RETURN TO MAIN MENU", windowWidth/2-100, windowHeight-100);
+text("TURN LEFT    -   LEFT ARROW", windowWidth/2, windowHeight/2);
+text("TURN RIGHT   -   RIGHT ARROW", windowWidth/2, windowHeight/2+50);
+text("SHOOT        -   SPACEBAR", windowWidth/2, windowHeight/2+100);
+text("PRESS 'ESC' TO RETURN TO MAIN MENU", windowWidth/3, windowHeight-20);
 
 }
