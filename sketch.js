@@ -298,7 +298,7 @@ function mainText(){
   text("PRESS ENTER TO SELECT", windowWidth/2-200, windowHeight-40);
 
   if(menuShip == 0){
-    y = windowHeight/2-20;
+    y = windowHeight/2-10;
     fill(255,255,0);
     text("PLAY", windowWidth/2, windowHeight/2);
     fill(200);
@@ -309,7 +309,7 @@ function mainText(){
     ship.position.y = y;
 
   } else if(menuShip == 1){
-    y = windowHeight/2+80;
+    y = windowHeight/2+90;
     fill(255,255,0);
     text("HIGH SCORE", windowWidth/2, windowHeight/2+100);
     fill(200);
@@ -319,7 +319,7 @@ function mainText(){
     ship.position.y = y;
 
   }else if(menuShip == 2){
-    y = windowHeight/2+180;
+    y = windowHeight/2+190;
     fill(255,255,0);
     text("HELP", windowWidth/2, windowHeight/2+200);
     fill(200);
@@ -399,7 +399,7 @@ function drawEnemies(){
     boss.scale = 0.11;
     boss.addAnimation('fly', bossAni);
     boss.changeAnimation('fly');
-    bossHP = 50*level;
+    bossHP = 40*level;
     laugh.play();
     
     
@@ -410,7 +410,7 @@ function drawEnemies(){
     
     for(var i = 0; i<8+(level); i++){
       if(i >= 9){
-        enemy1 = createSprite(i*70, windowHeight/10-100);
+        enemy1 = createSprite(i/9*70, -10*i);
         enemy1.scale = 0.03;
         enemy1.addImage(enemy1Image);
         enemy1.attractionPoint(0.7,i*70, windowHeight);
@@ -423,6 +423,7 @@ function drawEnemies(){
 
       }
       
+    
   
       //attraction
   
@@ -491,7 +492,7 @@ function checkBoss(){
   fill("red");
   textSize(32);
   text("BOSS HEALTH:" + bossHP , windowWidth/2-200, 50);
-  boss.attractionPoint(1,Mainship.position.x, boss.position.y);
+  boss.attractionPoint(0.7,Mainship.position.x, boss.position.y);
   boss.position.y += 1;
   boss.friction = 0.1;
   if(bulletGroup.length > 0){
@@ -510,6 +511,13 @@ function checkBoss(){
     boss.remove();
     drawEnemies();
     score += 100;
+  }
+  if(boss.position.y > windowHeight-50){
+    boss.remove();
+    numLife -= 1;
+    level += 1;
+    drawEnemies();
+    life.play();
   }
 
  
