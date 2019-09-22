@@ -517,7 +517,7 @@ function checkHit(){
 function checkBoss(){
   fill("red");
   textSize(32);
-  text("BOSS HEALTH:" + bossHP , windowWidth/2-300, 50);
+  text("BOSS HEALTH:" + bossHP , windowWidth/2-200, 50);
   boss.attractionPoint(0.7,Mainship.position.x, boss.position.y);
   boss.position.y += 1;
   boss.friction = 0.1;
