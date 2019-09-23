@@ -1,3 +1,4 @@
+//constants for choosing correct screen
 const LOADING = 0;
 const MAIN_MENU = 1;
 const PLAY = 2;
@@ -6,7 +7,7 @@ const HELP = 4;
 const VIDEO = 5;
 const preScreen = 6;
 
-
+//some of the preload functions
 let currentScreen = 6;
 let shipImage;
 let enemy1Image;
@@ -15,7 +16,7 @@ let titleImage;
 let bulletImage;
 let heartImage;
 let drawMe = false; //is used to controll which sprites are being drawn per frame
-let drawMeScore = false; //used to not draw dfgggg
+let drawMeScore = false; //used to not draw score when not wanted
 let counter; 
 
 //fonts
@@ -29,16 +30,16 @@ let playing = false;
 
 let menuShip = 0;
 
+//functions used later in the code
 var enemyGroup;
 var bulletGroup;
-var enemies = [];
-var bullets = [];
-var heartGroup = [];
-var fireGroup = [];
+var enemies = []; //group for enemysprites
+var bullets = []; //group for bullets from player
+var heartGroup = []; //stores the remaining hearts
+var fireGroup = []; //group of fireballs shot by boss
 var numLife;
 let hit, life, shot;
 let intro;
-let videoWorks;
 let leaderboard;
 let bossImage, boss, bossHP;
 let fireballImage, fireBall, firesound;
@@ -46,10 +47,10 @@ let laugh, fly2;
 let bossText, bossAni;
 
 
-function fontRead(){
+function fontRead(){ //used to check if downloaded font is ready to display
   fontReady = true;
 }
-function preload(){
+function preload(){ //preload images, font, sound, json, animation and video to make the game more smooth
   //images
   titleImage = loadImage('../images/galaga30.png');
   shipImage = loadImage('../images/galagaShipGrey.png');
@@ -88,7 +89,7 @@ function preload(){
 
 
 }
-
+//functions used further down
 let ship;
 let title;
 let enemy1;
@@ -99,7 +100,7 @@ var bullet;
 let heart;
 var level = 0;
 
-function setup() {
+function setup() { //used to create canvas, create groups, set currentscreen, and edit bossanimation
   createCanvas(windowWidth, windowHeight-5);
   frameRate(60);
   
@@ -116,9 +117,7 @@ function setup() {
 
 }
 
-
-
-function draw() {
+function draw() { //chooses which scene to draw
   if(currentScreen == preScreen){
     preStart();
   }
@@ -140,16 +139,16 @@ function draw() {
   else if(currentScreen == HIGH_SCORE){
     drawHighscore();
   }
-  if(frameCount == 2000){
+  if(frameCount == 2000){ //skips to main menu after video is finished
     drawMe = true;
     currentScreen = MAIN_MENU; 
   }
 
-  drawSprites();
+  drawSprites(); //draw sprites accuring at any screen
   
 }
 
-function preStart(){
+function preStart(){ //needs this press to activate the video
   background(bg);
   fill(255);
   textFont(myFont);
@@ -158,11 +157,11 @@ function preStart(){
   keyTyped();
 }
 
-function playVideo(){
+function playVideo(){ //plays the video after a press, it lasts about 18 seconds
   if(counter < 1800){
     image(intro, 0,0, windowWidth, windowHeight);
     intro.play();
-    intro.volume(0.3);
+    intro.volume(0.3); //turned the volume down
   }
   else {
     currentScreen = LOADING;
@@ -174,7 +173,7 @@ function playVideo(){
   
 }
 
-function drawLoadingScreen(){
+function drawLoadingScreen(){ //this is the loading screen after video
 
   if(drawMe){
     background(bg);
@@ -194,13 +193,13 @@ function drawLoadingScreen(){
 
   }
 
-  drawMe = false;
+  drawMe = false; //removes title and image 
   
   
 }
 
 
-function drawMainMenu(){
+function drawMainMenu(){ //main menu consist of title and the image of the ship as arrow
 
   if(drawMe){
     background(bg);
@@ -216,14 +215,14 @@ function drawMainMenu(){
     ship.addImage(shipImage);
     ship.rotation = 90;
 
-    mainText();
+    mainText(); //draws the options available in main menu
 
   }
   drawMe = false;
   
 }
 
-function keyPressed(){
+function keyPressed(){ //checks which screen to display after pressing enter
   if(currentScreen == MAIN_MENU){
       if(keyCode === DOWN_ARROW){
         if(menuShip < 2){
@@ -236,7 +235,7 @@ function keyPressed(){
           menuShip -= 1;
           mainText();
         }
-      }else if(keyCode === ENTER){
+      }else if(keyCode === ENTER){ //starts the game
       if(menuShip == 0){
         drawMeScore = false;
         drawMe = true;
@@ -252,14 +251,14 @@ function keyPressed(){
         lives();
         
 
-      }else if(menuShip == 1){
+      }else if(menuShip == 1){ //shows leaderboard
         drawMeScore = true;
         currentScreen = HIGH_SCORE;
         title.remove();
         ship.remove();
         drawHighscore();
         
-      }else if(menuShip == 2){
+      }else if(menuShip == 2){ //shows instructions
         currentScreen = HELP;
         drawHelp();
       }
@@ -288,8 +287,8 @@ if(currentScreen == HELP){
   }
 }
 
-function keyTyped(){
-  if(currentScreen == PLAY){
+function keyTyped(){ 
+  if(currentScreen == PLAY){ //makes the player shoot a bullet for each time space is tapped
     if(key === ' '){
       bullet = createSprite(Mainship.position.x,Mainship.position.y);
       bullet.scale = 0.05;
@@ -302,7 +301,7 @@ function keyTyped(){
     }
   }
 
-  if(currentScreen == preScreen){
+  if(currentScreen == preScreen){ //detects action to start the intro video
     if(key === ' '){
       currentScreen = VIDEO;
     }
@@ -310,7 +309,8 @@ function keyTyped(){
   
 }
 
-function mainText(){
+function mainText(){ //called by drawMainMenu()
+  //setup
   textSize(23);
   textFont(myFont); 
   fill(0);
@@ -318,7 +318,7 @@ function mainText(){
   fill(255);
   text("PRESS ENTER TO SELECT", windowWidth/2-200, windowHeight-40);
 
-  if(menuShip == 0){
+  if(menuShip == 0){ //displays which text to be yellow, as well as ship position
     y = windowHeight/2-10;
     fill(255,255,0);
     text("PLAY", windowWidth/2, windowHeight/2);
@@ -353,10 +353,11 @@ function mainText(){
 }
   
 
-function drawPlay(){
-  title.remove();
+function drawPlay(){ //draws playingscreen
+  title.remove(); //removes previois title and ship
   ship.remove();
 
+  //side display of information
   let leftWall = 350;
   let rightWall = 1050;
   background(bg);
@@ -401,9 +402,9 @@ function drawPlay(){
     }
   }
 
-  checkHit();
-  lives();
-  if(level > 0 && level % 2 == 0){
+  checkHit(); //check if ship is hit
+  lives(); //checks and updates lives
+  if(level > 0 && level % 2 == 0){ //makes sure boss is only draw when wanted
     checkBoss();
     checkHit();
   } else{
@@ -413,95 +414,85 @@ function drawPlay(){
 }
   
 
-function drawEnemies(){
+function drawEnemies(){//draws enemies both boss and normal ones
 
-  if(level > 0 && level % 2 == 0){
+  if(level > 0 && level % 2 == 0){ //draws a boss every other level
     boss = createSprite(windowWidth/2-150, windowHeight/2-200);
     boss.scale = 0.11;
     boss.addAnimation('fly', bossAni);
     boss.changeAnimation('fly');
     bossHP = 40*level;
     laugh.play();
-    
-    
-  
-
 
   } else{
-    
+    //draws normal enemies
     for(var i = 0; i<8+(level); i++){
-      if(i >= 18){ 
+      if(i >= 18){  //third row of enemies, most people die before this row
           enemy1 = createSprite(i*70-600, windowHeight/10-200);
           enemy1.scale = 0.03;
           enemy1.addImage(enemy1Image);
           enemy1.attractionPoint(0.7,i*70-200, windowHeight);
-      }else if(i >= 9){
+      }else if(i >= 9){ //second row of enemies
         enemy1 = createSprite(i*70-200, windowHeight/10-100);
         enemy1.scale = 0.03;
         enemy1.addImage(enemy1Image);
         enemy1.attractionPoint(0.7,i*70-200, windowHeight);
 
-      }else {
+      }else { //first row of enemies
         enemy1 = createSprite(420+i*70, windowHeight/10);
         enemy1.scale = 0.03;
         enemy1.addImage(enemy1Image);
         enemy1.attractionPoint(0.7,450+i*70, windowHeight);
 
       }
-      
-    
-  
-      //attraction
-  
+      //green enemies added to enemygroup
       enemyGroup.add(enemy1);
   
     }
-    for(var i = 0; i<5; i++){
+    for(var i = 0; i<5; i++){ //blue flying enemies
       enemy2 = createSprite(450+i*130, windowHeight/10+80);
       enemy2.scale = 0.135;
       enemy2.addImage(enemy2Image);
   
-      //attraction bies
+      //attraction flies
       enemy2.attractionPoint(level*0.7,Mainship.position.x, Mainship.position.y);
   
-      enemyGroup.add(enemy2);
+      enemyGroup.add(enemy2); //blue enemies added to same group
   
     }
-
   }
-
-  
 }
 
 
-function checkHit(){
-
+function checkHit(){ //check if bullet and enemies collide, also fireballs
+//this first method loops through current enemies, and checks if there are bullets on the screen
+//if an enemy overlaps with a bullet, the bullet is removed
   for(var i = 0; i<enemyGroup.length; i++){ //for each enemy in group
     if(bulletGroup.length > 0){
       if(enemyGroup[i].overlap(bulletGroup)){
-        for( var x = 0; x<bulletGroup.length; x++){
+        for( var x = 0; x<bulletGroup.length; x++){ //loops through bullet as well for better detection
           if(bulletGroup[x].overlap(enemyGroup)){
             bulletGroup[x].remove();
           }
         }
         
-        enemyGroup[i].remove();
+        enemyGroup[i].remove(); //enemy removed, score added and hit sound played
         hit.play();
         checkEnemies();
         score += 10;
-      }else if(bulletGroup[0].position.y <= 50){
+      }else if(bulletGroup[0].position.y <= 50){ //if bullet reaches end of screen, it has to be removed
         bulletGroup[0].remove();
-        score -= 1;
+        score -= 1; //loses point for failed shot
       }
     } 
-    if(enemyGroup.length <= 0){
+    if(enemyGroup.length <= 0){  //draw enemies if there are no more enemies
       checkEnemies();
       level += 1; //1
       drawEnemies();
     }
  }
 
-  for(var x = 0; x<fireGroup.length; x++){
+  for(var x = 0; x<fireGroup.length; x++){ //checks if one of the fireballs hit the player
    if(fireGroup[x].overlap(Mainship)){
      fireGroup[x].remove();
      numLife -= 1;
@@ -513,32 +504,31 @@ function checkHit(){
 }
 
 
-
-function checkBoss(){
+function checkBoss(){ //edit the boss funtions
   fill("red");
   textSize(32);
   text("BOSS HEALTH:" + bossHP , windowWidth/2-200, 50);
-  boss.attractionPoint(0.7,Mainship.position.x, boss.position.y);
-  boss.position.y += 1;
+  boss.attractionPoint(0.7,Mainship.position.x, boss.position.y); //will make boss follow the player
+  boss.position.y += 1; //the boss moves further down the screen
   boss.friction = 0.1;
-  if(bulletGroup.length > 0){
+  if(bulletGroup.length > 0){ //checks if the player hits the boss
     if(boss.overlap(bulletGroup[0])){
       bossHP -= 10;
       bulletGroup[0].remove();
       hit.play();
       score += 10;
-    }else if(bulletGroup[0].position.y <= 50){
+    }else if(bulletGroup[0].position.y <= 50){ //also removes bullet if missed
       bulletGroup[0].remove();
       score -= 1;
     }
   }
-  if(bossHP <= 0){
+  if(bossHP <= 0){ //checks if boss has no health, +100 points
     level += 1; //2
     boss.remove();
     drawEnemies();
     score += 100;
   }
-  if(boss.position.y > windowHeight-50){
+  if(boss.position.y > windowHeight-50){ //loses health if boss reaches player
     boss.remove();
     numLife -= 1;
     level += 1;
@@ -547,7 +537,7 @@ function checkBoss(){
   }
 
  
-  if(frameCount % 60 == 0){
+  if(frameCount % 60 == 0){ //makes the boss shot fireballs every 0.6 second.
       fireBall = createSprite(boss.position.x,boss.position.y);
       fireBall.scale = 0.05;
       fireBall.rotation = -50;
@@ -560,28 +550,26 @@ function checkBoss(){
 
 }
 
-function checkEnemies(){
+function checkEnemies(){ //check if enemy crash into player
   for(var i = 0; i<enemyGroup.length; i++){ //for each enemy in group
     if(enemyGroup[i].overlap(Mainship)){
       enemyGroup[i].remove();
       numLife -= 1;
       life.play();
 
-
-
-    } else if(enemyGroup[i].position.y > windowHeight-50){
+    } else if(enemyGroup[i].position.y > windowHeight-50){ //also check if enemy passes by player, loses health
       enemyGroup[i].remove();
       numLife -= 1;
       life.play();
 
-      if(enemyGroup.length <= 0){
+      if(enemyGroup.length <= 0){ //draw enemies if there are no more enemies
         drawEnemies();
       }
     }
   }
 }
 
-function lives(){
+function lives(){ // makes sure the lives displayed are corerct
   if(numLife == 3){
     image(heartImage, 1060, 410, 40, 40);
     image(heartImage, 1110, 410, 40, 40);
@@ -595,7 +583,7 @@ function lives(){
   } else if(numLife == 1){
     image(heartImage, 1060, 410, 40, 40);
 
-  }else if(numLife <= 0){
+  }else if(numLife <= 0){ //if the player is out of lives, remove every sprite and display highscore
     currentScreen = HIGH_SCORE;
     Mainship.remove();
     enemyGroup.removeSprites();
@@ -603,7 +591,7 @@ function lives(){
     menuShip = 0;
     drawMeScore = true;
 
-    if(level > 1){
+    if(level > 1){ //checks that boss is removed after killed
       boss.remove();
       fireGroup.removeSprites();
     }
@@ -611,9 +599,9 @@ function lives(){
 
 }
 
-function drawHighscore(){
+function drawHighscore(){ //draws leadboard 
   if(drawMeScore){
-   numLife = 3;
+   numLife = 3; //reset health to next match
     background(bg);
     textSize(25);
     text("LEADERBOARD", windowWidth/2-200,100);
@@ -626,7 +614,7 @@ function drawHighscore(){
     fill("white");
     text("PRESS 'ESC' TO RETURN TO MAIN MENU", windowWidth/3, windowHeight-20);
 
-    for(var i = 0; i<tabell.leaderboard.length; i++){
+    for(var i = 0; i<tabell.leaderboard.length; i++){ //loop thorugh json file and display
       fill(64,224,208)
       text(tabell.leaderboard[i].name, windowWidth/2-200, i*40+300);
       text(tabell.leaderboard[i].score, windowWidth/2, i*40+300);
@@ -638,10 +626,10 @@ function drawHighscore(){
 
 }
 
-function drawHelp(){
+function drawHelp(){ //display basic instructions
 background(bg);
 
-ship.remove();
+ship.remove(); //removes the main menu ship
 
 textSize(15);
 text("TURN LEFT    -   LEFT ARROW", windowWidth/2-150, windowHeight/2);
